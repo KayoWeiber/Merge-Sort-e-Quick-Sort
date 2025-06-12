@@ -1,4 +1,5 @@
-public class MergeSoft {
+public class MergeSort {
+    int etapas=0;
     public void Merge(int[] array, int left, int middle, int right){
         //calcula o tamanho das sub-listas
         int n1 = middle-left+1;
@@ -11,9 +12,11 @@ public class MergeSoft {
         //copia os dados para arrays temporários
         for( int i =0;i<n1;i++){
             leftArray[i] = array[left + i];
+            etapas++;
         }
         for(int j = 0;j<n2;++j){
             rightArray[j] = array[middle +1 +j];
+            etapas++;
         }
         
         //indices paras sub-listas e o array mesclado
@@ -27,23 +30,28 @@ public class MergeSoft {
             if(leftArray[i_left]<=rightArray[j_right]){
                 array[k_merged] = leftArray[i_left];
                 i_left++;
+                etapas++;
             }else{
                 array[k_merged]=rightArray[j_right];
                 j_right++;
+                etapas++;
             }
             k_merged++;
+            etapas++;
         }
         //copia os elementos restantes da sub-lista esquerda
         while (i_left<n1){
             array[k_merged]=leftArray[i_left];
             i_left++;
             k_merged++;
+            etapas++;
         }
         //copia os elementos restantes da sub-lista direita
         while (j_right<n2){
             array[k_merged] = rightArray[j_right];
             j_right++;
             k_merged++;
+            etapas++;
         }
 
     }
@@ -57,6 +65,9 @@ public class MergeSoft {
             Merge(array,left,middle,right); //mescla as duas metades já ordenas
 
         }
+    }
+    public void QuantidadesEtapas(){
+        System.out.printf("\nA Quantidade de etapas é igual à: %d%n", etapas);
     }
 
 }

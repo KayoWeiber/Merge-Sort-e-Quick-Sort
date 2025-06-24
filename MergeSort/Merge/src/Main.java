@@ -5,5 +5,6 @@ public class Main {
         Controlador controller = new Controlador();
         controller.Merge();
         controller.Quick();
+        controller.QuickMerge();
     }
 }

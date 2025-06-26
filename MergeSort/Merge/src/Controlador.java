@@ -2,81 +2,54 @@ public class Controlador {
     public void Merge() {
         MergeSort merge = new MergeSort();
         int[] array = {85, 12, 3, 99, 4, 27, 65, 32, 19, 87, 11, 45, 67, 23, 9, 56, 74, 31, 98, 13};
-        int n = array.length;
 
         System.out.print("\nVetor original: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(array[i] + " ");
-        }
+        for (int num : array) System.out.print(num + " ");
 
-        long inicio = System.nanoTime(); // início da medição
-
-        merge.mergeSort(array, 0, n - 1);
-
-        long fim = System.nanoTime(); // fim da medição
-        long duracao = fim - inicio;
+        long inicio = System.nanoTime();
+        merge.sort(array, 0, array.length - 1);
+        long fim = System.nanoTime();
 
         System.out.print("\nVetor ordenado Merge: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(array[i] + " ");
-        }
+        for (int num : array) System.out.print(num + " ");
 
-        merge.QuantidadesEtapas();
-        System.out.println("Tempo de execução MergeSort: " + duracao + " ns (" + duracao / 1_000_000.0 + " ms)");
+        merge.imprimirContadores();
+        System.out.println("Tempo de execução MergeSort: " + (fim - inicio) + " ns (" + (fim - inicio) / 1_000_000.0 + " ms)");
     }
 
     public void Quick() {
         QuickSort quick = new QuickSort();
-        int[] exemplo = {85, 12, 3, 99, 4, 27, 65, 32, 19, 87, 11, 45, 67, 23, 9, 56, 74, 31, 98, 13};
-        int n = exemplo.length;
+        int[] array = {85, 12, 3, 99, 4, 27, 65, 32, 19, 87, 11, 45, 67, 23, 9, 56, 74, 31, 98, 13};
 
         System.out.print("\nVetor original: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(exemplo[i] + " ");
-        }
-        System.out.println();
+        for (int num : array) System.out.print(num + " ");
 
-        long inicio = System.nanoTime(); // inicia medição de tempo
+        long inicio = System.nanoTime();
+        quick.quickSort(array, 0, array.length - 1);
+        long fim = System.nanoTime();
 
-        quick.quickSort(exemplo, 0, n - 1);
+        System.out.print("\nVetor ordenado Quick: ");
+        for (int num : array) System.out.print(num + " ");
 
-        long fim = System.nanoTime(); // fim da medição
-        long duracao = fim - inicio; // tempo total em nanossegundos
-
-        System.out.print("Vetor ordenado Quick: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(exemplo[i] + " ");
-        }
-
-        quick.QuantidadeEtapas();
-        System.out.println("Tempo de execução QuickSort: " + duracao + " ns (" + duracao / 1_000_000.0 + " ms)");
+        quick.imprimirContadores();
+        System.out.println("Tempo de execução QuickSort: " + (fim - inicio) + " ns (" + (fim - inicio) / 1_000_000.0 + " ms)");
     }
-    public void QuickMerge(){
+
+    public void QuickMerge() {
         QuickMergeSort hibrid = new QuickMergeSort();
-        int[] exemplo = {85, 12, 3, 99, 4, 27, 65, 32, 19, 87, 11, 45, 67, 23, 9, 56, 74, 31, 98, 13};
-        int n = exemplo.length;
+        int[] array = {85, 12, 3, 99, 4, 27, 65, 32, 19, 87, 11, 45, 67, 23, 9, 56, 74, 31, 98, 13};
 
         System.out.print("\nVetor original: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(exemplo[i] + " ");
-        }
-        System.out.println();
+        for (int num : array) System.out.print(num + " ");
 
-        long inicio = System.nanoTime(); // inicia medição de tempo
+        long inicio = System.nanoTime();
+        hibrid.quickMergeSort(array, 0, array.length - 1);
+        long fim = System.nanoTime();
 
-        hibrid.quickMergeSort(exemplo, 0, n - 1);
+        System.out.print("\nVetor ordenado Quick-Merge: ");
+        for (int num : array) System.out.print(num + " ");
 
-        long fim = System.nanoTime(); // fim da medição
-        long duracao = fim - inicio; // tempo total em nanossegundos
-
-        System.out.print("Vetor ordenado Quick-Merge: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(exemplo[i] + " ");
-        }
-
-        hibrid.QuantidadeEtapas();
-        System.out.println("Tempo de execução Quick-Merge: " + duracao + " ns (" + duracao / 1_000_000.0 + " ms)");
+        hibrid.imprimirContadores();
+        System.out.println("Tempo de execução Quick-Merge: " + (fim - inicio) + " ns (" + (fim - inicio) / 1_000_000.0 + " ms)");
     }
-    }
-
-
+}

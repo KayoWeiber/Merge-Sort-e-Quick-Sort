@@ -1,6 +1,7 @@
 public class QuickMergeSort {
-    int etapas = 0;
-    final int LIMIAR = 10; // define o limite para usar MergeSort
+    private int comparacoes = 0;
+    private int trocas = 0;
+    private final int LIMIAR = 10;
 
     MergeSort merge = new MergeSort();
 
@@ -8,7 +9,7 @@ public class QuickMergeSort {
         int temp = vetor[a];
         vetor[a] = vetor[b];
         vetor[b] = temp;
-        etapas++;
+        trocas++;
     }
 
     public int particionar(int[] vetor, int inicio, int fim) {
@@ -16,6 +17,7 @@ public class QuickMergeSort {
         int i = inicio - 1;
 
         for (int j = inicio; j < fim; j++) {
+            comparacoes++;
             if (vetor[j] <= pivo) {
                 i++;
                 trocar(vetor, i, j);
@@ -26,11 +28,16 @@ public class QuickMergeSort {
     }
 
     public void quickMergeSort(int[] vetor, int inicio, int fim) {
+        if (inicio == 0 && fim == vetor.length - 1) {
+            comparacoes = 0;
+            trocas = 0;
+        }
+
         if (inicio < fim) {
-            // Usa MergeSort se o tamanho for pequeno
             if (fim - inicio + 1 <= LIMIAR) {
-                merge.mergeSort(vetor, inicio, fim);
-                etapas += merge.etapas;
+                merge.sort(vetor, inicio, fim);
+                comparacoes += merge.getComparacoes();
+                trocas += merge.getTrocas();
             } else {
                 int posicaoPivo = particionar(vetor, inicio, fim);
                 quickMergeSort(vetor, inicio, posicaoPivo - 1);
@@ -39,7 +46,8 @@ public class QuickMergeSort {
         }
     }
 
-    public void QuantidadeEtapas() {
-        System.out.printf("\nA Quantidade total de etapas é igual à: %d%n", etapas);
+    public void imprimirContadores() {
+        System.out.printf("\nQuantidade de Comparações: %d%n", comparacoes);
+        System.out.printf("Quantidade de Trocas (Movimentações): %d%n", trocas);
     }
 }
